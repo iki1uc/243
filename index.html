@@ -2,42 +2,68 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>RE · 6E/6D · RAW-System</title>
+<title>243 · PQ‑Root · iki1uc</title>
 
 <style>
-body { background:#000; color:#0f0; font-family:Consolas; padding:20px; }
-h1, h2 { color:#6cf; }
-pre { background:#111; border:1px solid #333; padding:12px; }
-a { color:#6cf; display:block; margin:6px 0; }
+body{background:#000;color:#0f0;font-family:monospace;padding:40px;}
+h1{color:#0f0;margin-bottom:30px;letter-spacing:3px;}
+.block{background:#111;border:1px solid #333;padding:20px;margin-bottom:25px;border-radius:6px;}
+.title{color:#6cf;font-size:20px;margin-bottom:10px;}
+a{color:#6cf;text-decoration:none;}
+pre{background:#000;border-left:3px solid #6cf;padding:12px;white-space:pre-wrap;}
+button{background:#111;color:#0f0;border:1px solid #333;padding:8px 16px;margin-top:10px;}
 </style>
 </head>
 
 <body>
 
-<h1>6E · 6D · RAW · NC</h1>
+<h1>243 · PQ‑Root</h1>
 
-<pre>
-SYSTEM: 6E / 6D
-RAW: NC-RAW
-MATRIX: 9×9
-OPERATOR: BEAT∞ → REV1.0 → WIN∞
-AXES: ↑_0O / →_O0 / ↧_R0 / ∞_0M
-</pre>
+<div class="block">
+    <div class="title">243 – Kern</div>
+    <p>243 ist die PQ‑Root‑Ebene des iki1uc‑Systems.</p>
+    <p>Sie bleibt bewusst klar, stabil und rational.</p>
+</div>
 
-<section>
-<h2>Achsen</h2>
-<a href="./↑_0O/X.room">↑_0O · Höhe</a>
-<a href="./→_O0/X.room">→_O0 · Breite</a>
-<a href="./↧_R0/X.room">↧_R0 · Tiefe</a>
-<a href="./∞_0M/X.room">∞_0M · Mystery</a>
-</section>
+<div class="block">
+    <div class="title">Identität</div>
+    <p><a href="id.html">→ 243‑ID öffnen</a></p>
+</div>
 
-<section>
-<h2>META²³</h2>
-<a href="./∞_0M/META².room">META²</a>
-<a href="./∞_0M/META³.room">META³</a>
-<a href="./∞_0M/META360.room">META360</a>
-</section>
+<div class="block">
+    <div class="title">PQ‑Root‑Status</div>
+    <pre>
+PQ.Root = 243
+PQ.Mode = WHIRL_PQ
+PQ.Vector = D0..D5
+PQ.State = stabil
+PQ.Ready = 100%
+    </pre>
+</div>
+
+<div class="block">
+    <div class="title">Response‑Layer</div>
+    <button onclick="run()">RESPO</button>
+    <pre id="out">Bereit...</pre>
+</div>
+
+<script>
+function run(){
+    const respo = {
+        layer: "243",
+        mode: "WHIRL_PQ",
+        root: 243,
+        state: "ok",
+        time: Date.now()
+    };
+    out.textContent = JSON.stringify(respo, null, 2);
+}
+</script>
+
+<div class="block">
+    <div class="title">Dokumentation</div>
+    <p><a href="README.md">→ README anzeigen</a></p>
+</div>
 
 </body>
 </html>
