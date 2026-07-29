@@ -20,29 +20,28 @@ button{background:#111;color:#0f0;border:1px solid #333;padding:8px 16px;margin-
 <h1>243 · PQ‑Root</h1>
 
 <div class="block">
-    <div class="title">243 – Kern</div>
+    <div class="title">Kern</div>
     <p>243 ist die PQ‑Root‑Ebene des iki1uc‑Systems.</p>
-    <p>Sie bleibt bewusst klar, stabil und rational.</p>
+    <p>Sie hält den PQ‑Vector und steuert WHIRL_PQ.</p>
 </div>
 
 <div class="block">
     <div class="title">Identität</div>
-    <p><a href="id.html">→ 243‑ID öffnen</a></p>
+    <p><a href="ID.html">→ 243‑ID öffnen</a></p>
 </div>
 
 <div class="block">
-    <div class="title">PQ‑Root‑Status</div>
+    <div class="title">Status</div>
     <pre>
-PQ.Root = 243
-PQ.Mode = WHIRL_PQ
-PQ.Vector = D0..D5
+PQ.Root  = 243
+PQ.Mode  = WHIRL_PQ
 PQ.State = stabil
 PQ.Ready = 100%
     </pre>
 </div>
 
 <div class="block">
-    <div class="title">Response‑Layer</div>
+    <div class="title">Response</div>
     <button onclick="run()">RESPO</button>
     <pre id="out">Bereit...</pre>
 </div>
@@ -53,7 +52,7 @@ function run(){
         layer: "243",
         mode: "WHIRL_PQ",
         root: 243,
-        state: "ok",
+        status: "ok",
         time: Date.now()
     };
     out.textContent = JSON.stringify(respo, null, 2);
