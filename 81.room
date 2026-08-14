@@ -1,117 +1,42 @@
-export const RESPO = {
+export const ROOM_81 = {
 
-  // 1) 81.room lesen
-  read(){
-    return {
-      emotion: ROOM_81.emotion,
-      body: ROOM_81.body,
-      drive: ROOM_81.drive,
-      space: ROOM_81.space,
-      time: ROOM_81.time,
-      thinking: ROOM_81.thinking,
-      action: ROOM_81.action,
-      quality: ROOM_81.quality
-    };
-  },
+  emotion: [
+    "Zorn","Freude","Trauer","Angst","Liebe",
+    "Hass","Ekel","Überraschung","Vertrauen"
+  ],
 
-  // 2) PQ‑Root + Vector scannen
-  scan(truth){
-    return {
-      root: truth.pqVector.D0,
-      vector: truth.pqVector,
-      time: truth.time6d.vector
-    };
-  },
+  body: [
+    "Hunger","Durst","Schlaf","Wärme","Kälte",
+    "Schmerz","Erschöpfung","Kraft","Gesundheit"
+  ],
 
-  // 3) WHIRL korrekt erzeugen
-  whirl(truth){
-    const root = truth.pqVector.D0;
-    let mode = "WHIRL_CORE";
+  drive: [
+    "Wille","Mut","Neugier","Fokus","Geduld",
+    "Disziplin","Leidenschaft","Hoffnung","Entschlossenheit"
+  ],
 
-    if(root >= 200 && root <= 229) mode = "WHIRL_SYS";
-    else if(root >= 230 && root <= 259) mode = "WHIRL_PQ";
-    else if(root >= 260) mode = "WHIRL_HYPER";
+  space: [
+    "Ort","Raum","Position","Lage","Richtung",
+    "Zentrum","Peripherie","Höhe","Tiefe"
+  ],
 
-    const whirl = {
-      mode,
-      root,
-      vec: truth.pqVector,
-      time: truth.time6d.vector,
-      seq: truth.seq || 9706.8
-    };
+  time: [
+    "Tag","Nacht","Tempo","Pause","Start",
+    "Ende","Dauer","Moment","Zyklus"
+  ],
 
-    truth.pqHistory.push(whirl);
-    truth.respoLog.push(whirl);
-    truth.ncLog.push(whirl);
-    truth.tmpAxis = truth.time6d.vector;
+  thinking: [
+    "Gedanke","Erinnerung","Plan","Analyse","Logik",
+    "Intuition","Bewusstsein","Traum","Vision"
+  ],
 
-    return whirl;
-  },
+  action: [
+    "Gehen","Stehen","Sitzen","Laufen","Greifen",
+    "Halten","Werfen","Öffnen","Schließen"
+  ],
 
-  // 4) Axis berechnen
-  axis(time){
-    return {
-      B: time.B,
-      X: time.X,
-      Y: time.Y,
-      Z: time.Z
-    };
-  },
-
-  // 5) REAL +X / -X
-  real(x){
-    return x >= 0 ? "+X" : "-X";
-  },
-
-  // 6) VIRTUAL DOM‑Spread
-  virtual(x){
-    return x + "°";
-  },
-
-  // 7) 9×9 Operator
-  operator9x9(matrix){
-    return matrix.map(row => row.reduce((a,b)=>a+b));
-  },
-
-  // 8) META²³
-  meta(truth){
-    return {
-      meta: "META²³",
-      level: truth.sysLevel || 213
-    };
-  },
-
-  // 9) PREFETCH ACTIVE
-  prefetch(){
-    return "ACTIVE";
-  },
-
-  // 10) PQ‑State
-  state(root){
-    if(root < 100) return "PALAISE_RESPO";
-    if(root < 200) return "RESPO_ARG_SCAN";
-    if(root < 300) return "RESPO_WHIRL";
-    return "RESPO_WHIRL + NC_HUB_ALL";
-  },
-
-  // 11) Routing
-  route(truth){
-    return this.state(truth.pqVector.D0);
-  },
-
-  // 12) Finaler Output
-  output(truth){
-    return {
-      root: truth.pqVector.D0,
-      mode: this.route(truth),
-      whirl: this.whirl(truth),
-      axis: this.axis(truth.time6d.vector),
-      meta: this.meta(truth),
-      prefetch: this.prefetch(),
-      real: this.real(truth.time6d.vector.X),
-      virtual: this.virtual(truth.time6d.vector.X),
-      time: truth.time6d.vector,
-      seq: truth.seq
-    };
-  }
+  quality: [
+    "Hell","Dunkel","Warm","Kalt","Weich",
+    "Hart","Schnell","Langsam","Stark"
+  ]
 };
