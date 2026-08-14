@@ -1,4 +1,5 @@
-OUT:
-  ID: -_O0
-  MODE: ABS
-  PORT: ZERO-OUT
+export const X_ROOM_OUT = {
+  id: "-_O0",
+  mode: "ABS",
+  port: "ZERO-OUT"
+};
