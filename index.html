@@ -1,82 +1,59 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+<meta charset="UTF-8">
+<title>243 · Runtime · GEO‑Room</title>
 
-    <!-- META‑ZONE -->
-    <meta charset="UTF-8">
-    <title>243 · Runtime · GEO‑Room</title>
-
-    <!-- STYLE‑ZONE -->
-    <style>
-        body{background:#000;color:#0f0;font-family:monospace;padding:40px;}
-        .block{background:#111;padding:20px;margin-bottom:20px;border-radius:6px;}
-        .title{color:#6cf;font-size:20px;margin-bottom:10px;}
-        pre{background:#111;border-left:3px solid #6cf;padding:15px;white-space:pre-wrap;}
-        button{background:#111;color:#0f0;border:1px solid #333;padding:10px 20px;margin-top:10px;}
-    </style>
-
+<style>
+body{background:#000;color:#0f0;font-family:monospace;padding:40px;}
+.block{background:#111;padding:20px;margin-bottom:20px;border-radius:6px;}
+.title{color:#6cf;font-size:20px;margin-bottom:10px;}
+pre{background:#111;border-left:3px solid #6cf;padding:15px;white-space:pre-wrap;}
+button{background:#111;color:#0f0;border:1px solid #333;padding:10px 20px;margin-top:10px;}
+</style>
 </head>
 
 <body>
 
-    <!-- HEADER‑ZONE -->
-    <h1>243 · Runtime Engine</h1>
+<h1>243 · Runtime Engine</h1>
 
-    <!-- GEO‑3D‑ASCII‑ZONE -->
-    <div class="block">
-        <div class="title">GEO‑ASCII‑ROOM</div>
-        <pre id="geo">
-START…
-GEO‑Dreieck‑ASCII
-GEO‑Circle‑ASCII
-        </pre>
-    </div>
+<div class="block">
+    <button onclick="run243()">243 starten</button>
+    <pre id="out">Bereit…</pre>
+</div>
 
-    <!-- SYSTEM‑STATUS‑ZONE -->
-    <div class="block">
-        <div class="title">System‑Status</div>
-        <pre>
-NC.engine‑Status
-RESPO‑Status
-OS‑Status
-243‑Status
-        </pre>
-    </div>
+<script type="module">
 
-    <!-- START‑SEQUENZ‑ZONE -->
-    <div class="block">
-        <div class="title">Start‑Sequenz</div>
-        <pre>
-DOOR → DOO → RESPO → OS → NC.engine → 243 → SCORE → WETTE → SLIDE → Axiom
-        </pre>
-    </div>
+import { C81 } from "./81.room";
+import { X_ROOM_IN } from "./X.room.IN";
+import { X_ROOM_OUT } from "./X.room.OUT";
+import { RESPO_Whirl } from "./RESPO_Whirl.js";
+import { WHIRL_SYS } from "./WHIRL.SYS";
+import { Operator9 } from "./9×9-Operator.me";
+import { B_ROOM } from "./B.room";
+import { Y_ROOM } from "./Y.room";
 
-    <!-- MASSNAHME‑BUTTON -->
-    <div class="block">
-        <button>Maßnahme starten</button>
-    </div>
+function run243(){
 
-    <!-- LOG‑ZONE -->
-    <div class="block">
-        <div class="title">Log</div>
-        <pre>
-ASCII‑Frames
-System‑Logs
-RESPO‑Matrix
-NC‑Deckung
-        </pre>
-    </div>
+    const out = {
 
-    <!-- SCRIPT‑ZONE -->
-    <script>
-        anim()
-        Frame‑Rotation
-        Z‑Achse‑Fix
-        GEO‑Dreieck‑Renderer
-        GEO‑Circle‑Renderer
-        start.js‑Bindung
-        boot.js‑Bindung
-    </script>
+        c81: C81.init(),
+        x_in: X_ROOM_IN,
+        x_out: X_ROOM_OUT,
+        respo_whirl: RESPO_Whirl,
+        whirl_sys: WHIRL_SYS,
+        operator9: Operator9,
+        b_room: B_ROOM,
+        y_room: Y_ROOM,
+
+        timestamp: Date.now()
+    };
+
+    document.getElementById("out").textContent =
+        JSON.stringify(out, null, 2);
+}
+
+</script>
 
 </body>
 </html>
