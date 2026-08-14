@@ -1,33 +1,21 @@
-export function RESPO_WHIRL(truth){
+export const WHIRL_SYS = {
 
+  mode(root){
+    if(root >= 200 && root <= 229) return "WHIRL_SYS";
+    if(root >= 230 && root <= 259) return "WHIRL_PQ";
+    if(root >= 260) return "WHIRL_HYPER";
+    return "WHIRL_CORE";
+  },
+
+  build(truth){
     const root = truth.pqVector.D0;
 
-    let mode = "WHIRL_CORE";
-
-    if(root >= 200 && root <= 229){
-        mode = "WHIRL_SYS";     // 213
-    }
-    else if(root >= 230 && root <= 259){
-        mode = "WHIRL_PQ";      // 243
-    }
-    else if(root >= 260){
-        mode = "WHIRL_HYPER";
-    }
-
-    const whirl = {
-        mode,
-        root,
-        sys: truth.sysLevel || 213,
-        vec: truth.pqVector,
-        time: truth.time6d.vector,
-        seq: truth.seq || 9706.8
+    return {
+      mode: this.mode(root),
+      root,
+      vec: truth.pqVector,
+      time: truth.time6d.vector,
+      seq: truth.seq || 9706.8
     };
-
-    // Logs
-    truth.pqHistory.push(whirl);
-    truth.respoLog.push(whirl);
-    truth.ncLog.push(whirl);
-    truth.tmpAxis = truth.time6d.vector;
-
-    return whirl;
-}
+  }
+};
