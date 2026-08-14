@@ -24,21 +24,40 @@ button{background:#111;color:#0f0;border:1px solid #333;padding:10px 20px;margin
 <script type="module">
 
 import { C81 } from "./81.room";
-import { X_ROOM_IN } from "./X.room.IN";
-import { X_ROOM_OUT } from "./X.room.OUT";
+import { GEO } from "./81geo.js";
+import { A81CACHE } from "./81cache.js";
 import { RESPO_Whirl } from "./RESPO_Whirl.js";
 import { WHIRL_SYS } from "./WHIRL.SYS";
 import { Operator9 } from "./9×9-Operator.me";
-import { B_ROOM } from "./B.room";
-import { Y_ROOM } from "./Y.room";
 
-// ⭐ WICHTIG: Funktion global machen
 window.run243 = function(){
 
+    const c81 = C81.init();
+    const geo = GEO.analyze(c81);
+    const respo = RESPO_Whirl.init();
+    const whirl = WHIRL_SYS.init();
+    const op9 = Operator9.init();
+
     const out = {
+        c81,
+        geo,
+        respo,
+        whirl,
+        operator9: op9,
+        fusion: "243 + C81 + RESPO + GEO",
+        timestamp: Date.now()
+    };
 
-        // 81‑Einheit erkennen
-        c81: C81.init(),
+    // In Cache schreiben
+    A81CACHE.write(out);
 
-        // Räume laden
-        x_in: typeof X_ROOM_IN.init === "function" ? X_ROOM_IN.init() : X_ROOM
+    document.getElementById("out").textContent =
+        JSON.stringify(out, null, 2);
+
+    return out;
+};
+
+</script>
+
+</body>
+</html>
