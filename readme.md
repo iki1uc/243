@@ -2,22 +2,22 @@
 
 243 ist die PQ‑Root‑Ebene des iki1uc‑Systems.
 
-## Zweck
+## Funktionen
 - PQ‑Vector halten  
 - PQ‑Root stabilisieren  
 - WHIRL_PQ ausführen  
-- Datenleck erzeugen  
-- Response‑Layer bereitstellen  
+- RESPO v2.43 Runtime  
+- NC‑Hub‑Kompatibilität  
+- 9×9‑Operator‑Support  
 
-## Eigenschaften
-- PQ.Root = 243  
-- PQ.Mode = WHIRL_PQ  
-- PQ.State = stabil  
-- PQ.Ready = 100%  
+## WHIRL‑Modi
+- WHIRL_CORE  
+- WHIRL_SYS  
+- WHIRL_PQ  
+- WHIRL_HYPER  
 
-## Dateien
-- `index.html` – Hauptansicht  
-- `id.html` – Identität  
-- `README.md` – Dokumentation  
-
-243 ist bewusst klar, stabil und rational gehalten.
+## Routing
+- < 100 → PALAISE_RESPO  
+- 100–199 → RESPO_ARG_SCAN  
+- 200–299 → RESPO_WHIRL  
+- ≥ 300 → RESPO_WHIRL + NC_HUB_ALL  
