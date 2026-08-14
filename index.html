@@ -33,10 +33,9 @@ import { Operator9 } from "./9×9-Operator.me";
 import { B_ROOM } from "./B.room";
 import { Y_ROOM } from "./Y.room";
 
-function run243(){
+window.run243 = function run243(){
 
     const out = {
-
         c81: C81.init(),
         x_in: X_ROOM_IN,
         x_out: X_ROOM_OUT,
@@ -45,13 +44,12 @@ function run243(){
         operator9: Operator9,
         b_room: B_ROOM,
         y_room: Y_ROOM,
-
         timestamp: Date.now()
     };
 
     document.getElementById("out").textContent =
         JSON.stringify(out, null, 2);
-}
+};
 
 </script>
 
