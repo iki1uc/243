@@ -1,3 +1,6 @@
-CORE:
-  FUNCTION: NULLPUNKT
-  ENGINE: ULTRA
+export const X_ROOM_CORE = {
+  core: "NULLPUNKT",
+  engine: "ULTRA",
+  type: "Universal",
+  mode: "ABS"
+};
