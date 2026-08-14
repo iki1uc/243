@@ -7,7 +7,6 @@
 <style>
 body{background:#000;color:#0f0;font-family:monospace;padding:40px;}
 .block{background:#111;padding:20px;margin-bottom:20px;border-radius:6px;}
-.title{color:#6cf;font-size:20px;margin-bottom:10px;}
 pre{background:#111;border-left:3px solid #6cf;padding:15px;white-space:pre-wrap;}
 button{background:#111;color:#0f0;border:1px solid #333;padding:10px 20px;margin-top:10px;}
 </style>
@@ -33,25 +32,13 @@ import { Operator9 } from "./9×9-Operator.me";
 import { B_ROOM } from "./B.room";
 import { Y_ROOM } from "./Y.room";
 
-window.run243 = function run243(){
+// ⭐ WICHTIG: Funktion global machen
+window.run243 = function(){
 
     const out = {
+
+        // 81‑Einheit erkennen
         c81: C81.init(),
-        x_in: X_ROOM_IN,
-        x_out: X_ROOM_OUT,
-        respo_whirl: RESPO_Whirl,
-        whirl_sys: WHIRL_SYS,
-        operator9: Operator9,
-        b_room: B_ROOM,
-        y_room: Y_ROOM,
-        timestamp: Date.now()
-    };
 
-    document.getElementById("out").textContent =
-        JSON.stringify(out, null, 2);
-};
-
-</script>
-
-</body>
-</html>
+        // Räume laden
+        x_in: typeof X_ROOM_IN.init === "function" ? X_ROOM_IN.init() : X_ROOM
