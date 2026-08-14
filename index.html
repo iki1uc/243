@@ -1,81 +1,82 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<title>243 · Runtime · iki1uc</title>
 
-<style>
-body{background:#000;color:#0f0;font-family:monospace;padding:40px;}
-h1{color:#6cf;margin-bottom:20px;}
-pre{background:#111;border-left:3px solid #6cf;padding:15px;white-space:pre-wrap;}
-button{background:#111;color:#0f0;border:1px solid #333;padding:10px 20px;margin-top:10px;}
-.block{background:#111;padding:20px;margin-bottom:20px;border-radius:6px;}
-.title{color:#6cf;font-size:20px;margin-bottom:10px;}
-</style>
+    <!-- META‑ZONE -->
+    <meta charset="UTF-8">
+    <title>243 · Runtime · GEO‑Room</title>
+
+    <!-- STYLE‑ZONE -->
+    <style>
+        body{background:#000;color:#0f0;font-family:monospace;padding:40px;}
+        .block{background:#111;padding:20px;margin-bottom:20px;border-radius:6px;}
+        .title{color:#6cf;font-size:20px;margin-bottom:10px;}
+        pre{background:#111;border-left:3px solid #6cf;padding:15px;white-space:pre-wrap;}
+        button{background:#111;color:#0f0;border:1px solid #333;padding:10px 20px;margin-top:10px;}
+    </style>
+
 </head>
 
 <body>
 
-<h1>243 · Runtime Engine</h1>
+    <!-- HEADER‑ZONE -->
+    <h1>243 · Runtime Engine</h1>
 
-<div class="block">
-    <div class="title">System starten</div>
-    <button onclick="run()">RUN 243</button>
-    <pre id="out">Bereit...</pre>
-</div>
+    <!-- GEO‑3D‑ASCII‑ZONE -->
+    <div class="block">
+        <div class="title">GEO‑ASCII‑ROOM</div>
+        <pre id="geo">
+START…
+GEO‑Dreieck‑ASCII
+GEO‑Circle‑ASCII
+        </pre>
+    </div>
 
-<script type="module">
+    <!-- SYSTEM‑STATUS‑ZONE -->
+    <div class="block">
+        <div class="title">System‑Status</div>
+        <pre>
+NC.engine‑Status
+RESPO‑Status
+OS‑Status
+243‑Status
+        </pre>
+    </div>
 
-// ------------------------------------------------------------
-// IMPORTS (du kopierst diese Dateien in dein Repo)
-// ------------------------------------------------------------
+    <!-- START‑SEQUENZ‑ZONE -->
+    <div class="block">
+        <div class="title">Start‑Sequenz</div>
+        <pre>
+DOOR → DOO → RESPO → OS → NC.engine → 243 → SCORE → WETTE → SLIDE → Axiom
+        </pre>
+    </div>
 
-import { RESPO } from "./RESPO.js";
-import { NC_HUB_ALL } from "./NC_HUB_ALL.js";
-import { ROOM_81 } from "./81.room.js";
-import { X_ROOM_IN } from "./X.room.IN.js";
-import { X_ROOM_OUT } from "./X.room.OUT.js";
+    <!-- MASSNAHME‑BUTTON -->
+    <div class="block">
+        <button>Maßnahme starten</button>
+    </div>
 
-// ------------------------------------------------------------
-// RUNTIME TRUTH (dein Systemzustand)
-// ------------------------------------------------------------
+    <!-- LOG‑ZONE -->
+    <div class="block">
+        <div class="title">Log</div>
+        <pre>
+ASCII‑Frames
+System‑Logs
+RESPO‑Matrix
+NC‑Deckung
+        </pre>
+    </div>
 
-function createTruth(){
-    return {
-        pqVector: { D0: 243 },
-        time6d: { vector: { B: 12, X: 3, Y: 7, Z: 1 }},
-        pqHistory: [],
-        respoLog: [],
-        ncLog: [],
-        seq: 9706.8,
-        sysLevel: 213
-    };
-}
+    <!-- SCRIPT‑ZONE -->
+    <script>
+        anim()
+        Frame‑Rotation
+        Z‑Achse‑Fix
+        GEO‑Dreieck‑Renderer
+        GEO‑Circle‑Renderer
+        start.js‑Bindung
+        boot.js‑Bindung
+    </script>
 
-// ------------------------------------------------------------
-// MAIN RUNTIME
-// ------------------------------------------------------------
-
-function run(){
-
-    const truth = createTruth();
-
-    // RESPO v2.43
-    const respoOut = RESPO.output(truth);
-
-    // NC-HUB-ALL (aktiv ab PQ-Root >= 300)
-    const ncOut = NC_HUB_ALL.output(truth);
-
-    // X.room.IN Funktionen testen
-    const wetteTest = X_ROOM_IN.wette(12, 7);
-    const slideTest = X_ROOM_IN.slide(3, 5);
-    const scoreTest = X_ROOM_IN.score(243, 12);
-
-    // X.room.OUT Funktionen testen
-    const safeOut = X_ROOM_OUT.safe(1200);
-    const limitOut = X_ROOM_OUT.limiter(1200);
-    const filterOut = X_ROOM_OUT.filter("");
-    const slideOut = X_ROOM_OUT.slide(10, 5);
-
-    // Ausgabe
-    const
+</body>
+</html>
