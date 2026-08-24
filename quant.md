@@ -1,10 +1,24 @@
+# quant.md
+# Quantenphysik + UNI-9 Vertiefung
+
 QUANT:
-  BASIS: Schrödinger
-  FORMALISMUS:
+  BASIS:
+    - Schrödinger
     - Wellenfunktion
-    - Potentialprobleme
-    - QM-Operatoren
-  METHODEN:
-    - DFT
-    - Hartree-Fock
-    - QM/MM
+    - Operatoren
+    - Potentiale
+
+  UNI-9:
+    QUANTISIERUNG:
+      - Teilchen → Wellenfunktion
+      - +Teilchen → Überlagerung
+      - 0-Teilchen → Nullraum
+      - Koop → Kopplung
+      - Pook → Entkopplung
+      - Sensibel → Messreaktion
+      - Aura → Feldverteilung
+      - Mana → Energiefluss
+      - QI/IQQ → Präferenzableitung
+
+  REGEL:
+    - Quantenphysik ist die dynamische Form der UNI-9 Matrix
