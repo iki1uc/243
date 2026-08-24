@@ -3,502 +3,257 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌀 243 · PQ‑ROOT · WHIRL · RESPO v2.43</title>
+<title>🔺 243 + iki1uc · Narrativ-Maschine</title>
 
 <style>
-* { box-sizing:border-box; margin:0; padding:0; }
+:root {
+    --bg: #0a0a12;
+    --fg: #0ff;
+    --gold: #ffd700;
+    --243: #4f4;
+    --iki: #ff66ff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
 body {
-  background: #0a0a0f;
-  color: #c8d0d0;
-  font-family: 'Consolas', 'Courier New', monospace;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 16px;
-  background: radial-gradient(ellipse at 50% 50%, #0a0a1a, #000000);
-  transition: background 0.8s ease;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Consolas', monospace;
+    padding: 20px;
+    min-height: 100vh;
 }
-.container {
-  max-width: 1100px;
-  width: 100%;
-  background: rgba(10,10,20,0.3);
-  border: 1px solid rgba(255,170,0,0.03);
-  border-radius: 20px;
-  padding: 24px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 100px rgba(0,0,0,0.8);
+header {
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
-.header {
-  text-align: center;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.02);
-  margin-bottom: 16px;
+header h1 {
+    font-size: 20px;
+    color: var(--gold);
 }
-.header h1 {
-  font-size: 28px;
-  background: linear-gradient(90deg, #ffaa00, #ff66ff, #00ccff, #00ff88);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: 4px;
-}
-.header .sub {
-  color: #445555;
-  font-size: 11px;
-  letter-spacing: 3px;
-}
-.header .sub .pq { color: #ffaa00; }
-.header .sub .whirl { color: #ff66ff; }
+header h1 .two43 { color: var(--243); }
+header h1 .iki { color: var(--iki); }
 
-.routing-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 12px;
+#dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
 }
-@media (max-width:700px){ .routing-grid { grid-template-columns:1fr 1fr; } }
-@media (max-width:450px){ .routing-grid { grid-template-columns:1fr; } }
+.card {
+    background: #0e0e1a;
+    border: 1px solid #1a1a2a;
+    border-radius: 10px;
+    padding: 16px;
+    min-height: 150px;
+}
+.card h3 {
+    font-size: 12px;
+    color: #666;
+    border-bottom: 1px solid #1a1a2a;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+}
+.card .output {
+    font-size: 10px;
+    color: #6a6a8a;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+.card .output .highlight { color: var(--gold); }
+.card .output .two43 { color: var(--243); }
+.card .output .iki { color: var(--iki); }
 
-.routing-card {
-  background: rgba(10,10,20,0.2);
-  border: 1px solid rgba(255,255,255,0.02);
-  border-radius: 10px;
-  padding: 10px 8px;
-  text-align: center;
-  transition: all 0.3s;
-  cursor: pointer;
+button {
+    background: #111;
+    color: var(--fg);
+    border: 1px solid #333;
+    padding: 6px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 10px;
+    transition: all 0.2s;
+    margin-top: 8px;
 }
-.routing-card:hover {
-  border-color: rgba(255,170,0,0.1);
-  transform: translateY(-2px);
+button:hover {
+    background: #1a1a2a;
+    border-color: var(--gold);
 }
-.routing-card .icon { font-size: 24px; }
-.routing-card .name {
-  color: #aab;
-  font-size: 10px;
-  font-weight: bold;
-  margin: 4px 0;
-}
-.routing-card .value {
-  font-size: 16px;
-  font-weight: bold;
-  font-family: monospace;
-}
-.routing-card .desc {
-  color: #445555;
-  font-size: 7px;
-  letter-spacing: 1px;
-}
-.routing-card .status {
-  font-size: 7px;
-  margin-top: 2px;
-}
-.routing-card .status.on { color: #00ff88; }
-.routing-card .status.flow { color: #ffaa00; }
-.routing-card .status.whirl { color: #ff66ff; }
+button.primary { border-color: var(--gold); color: var(--gold); }
+button.two43 { border-color: var(--243); color: var(--243); }
+button.iki { border-color: var(--iki); color: var(--iki); }
 
-.canvas-wrap {
-  position: relative;
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
-  aspect-ratio: 16/9;
-  background: rgba(0,0,0,0.4);
-  border-radius: 12px;
-  border: 1px solid rgba(255,170,0,0.02);
-  overflow: hidden;
+#log {
+    grid-column: 1 / -1;
+    background: #0a0a12;
+    border: 1px solid #1a1a2a;
+    border-radius: 10px;
+    padding: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+    font-size: 9px;
+    color: #6a6a8a;
+    line-height: 1.4;
 }
-#pqCanvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
+#log .entry { padding: 2px 0; border-bottom: 1px solid #0a0a12; }
+#log .time { color: #444; }
+#log .msg.two43 { color: var(--243); }
+#log .msg.iki { color: var(--iki); }
+#log .msg.ok { color: #4f4; }
 
-.controls {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 10px;
+@media (max-width: 800px) {
+    #dashboard { grid-template-columns: 1fr; }
 }
-.controls button {
-  background: rgba(20,35,35,0.2);
-  color: #668888;
-  border: 1px solid rgba(255,255,255,0.02);
-  padding: 5px 16px;
-  border-radius: 18px;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 9px;
-  transition: all 0.3s;
-}
-.controls button:hover { background: rgba(40,80,70,0.08); color: #aaeedd; }
-.controls button.active { background: rgba(40,80,70,0.06); color: #00ff88; }
-.controls button.pq { color: #ffaa00; border-color: rgba(255,170,0,0.05); }
-.controls button.whirl { color: #ff66ff; border-color: rgba(255,102,255,0.05); }
-
-.status-bar {
-  display: flex;
-  justify-content: space-between;
-  padding: 4px 10px;
-  margin-top: 8px;
-  background: rgba(0,0,0,0.2);
-  border-radius: 6px;
-  font-size: 7px;
-  color: #445555;
-  border: 1px solid rgba(255,255,255,0.01);
-}
-.status-bar .pq { color: #ffaa00; }
-.status-bar .whirl { color: #ff66ff; }
-
-.footer {
-  text-align: center;
-  margin-top: 8px;
-  color: #222;
-  font-size: 7px;
-  letter-spacing: 2px;
-}
-.footer span { color: #ffaa00; }
 </style>
 </head>
 <body>
 
-<div class="container">
+<header>
+    <h1>
+        <span class="two43">243</span>
+        <span style="color:#666;"> + </span>
+        <span class="iki">iki1uc</span>
+        <span style="color:#666;"> → NARRATIV</span>
+    </h1>
+</header>
 
-<div class="header">
-  <h1>🌀 243 · PQ‑ROOT</h1>
-  <div class="sub"><span class="pq">PQ‑VECTOR</span> · <span class="whirl">WHIRL</span> · RESPO v2.43</div>
-</div>
-
-<div class="routing-grid" id="routingGrid">
-  <div class="routing-card" data-range="palaise">
-    <div class="icon">📊</div>
-    <div class="name">PALAISE_RESPO</div>
-    <div class="value" style="color:#00ff88;">0-99</div>
-    <div class="desc">Basis-Response</div>
-    <div class="status on">● aktiv</div>
-  </div>
-  <div class="routing-card" data-range="arg">
-    <div class="icon">🔍</div>
-    <div class="name">RESPO_ARG_SCAN</div>
-    <div class="value" style="color:#ffaa00;">100-199</div>
-    <div class="desc">Argument-Scan</div>
-    <div class="status flow">● flow</div>
-  </div>
-  <div class="routing-card" data-range="whirl">
-    <div class="icon">🌀</div>
-    <div class="name">RESPO_WHIRL</div>
-    <div class="value" style="color:#ff66ff;">200-299</div>
-    <div class="desc">WHIRL-Response</div>
-    <div class="status whirl">● whirl</div>
-  </div>
-  <div class="routing-card" data-range="hub">
-    <div class="icon">🌐</div>
-    <div class="name">NC_HUB_ALL</div>
-    <div class="value" style="color:#00ccff;">≥300</div>
-    <div class="desc">Vollintegration</div>
-    <div class="status on">● aktiv</div>
-  </div>
-</div>
-
-<div class="canvas-wrap">
-  <canvas id="pqCanvas"></canvas>
-</div>
-
-<div class="controls">
-  <button class="active pq" id="btnStart">▶ START</button>
-  <button class="pq" id="btnPQ">🌀 PQ</button>
-  <button class="whirl" id="btnWhirl">🌀 WHIRL</button>
-  <button id="btnRespo">🔥 RESPO</button>
-  <button id="btnProof">🔮 PROOF</button>
-  <button id="btnReset">⟲ RESET</button>
-</div>
-
-<div class="status-bar">
-  <span class="pq">🌀 PQ: <span id="pqStatus">aktiv</span></span>
-  <span class="whirl">🌀 WHIRL: <span id="whirlStatus">CORE</span></span>
-  <span>⏱️ <span id="timeStatus">00:00</span></span>
-</div>
-
-<div class="footer">
-  <span>🌀</span> 243 · PQ‑ROOT · WHIRL · RESPO v2.43 · <span>wieimmer4u</span>
-</div>
-
-</div>
-
-<script>
-// ============================================================
-// 243 · PQ‑ROOT · WHIRL · RESPO v2.43
-// ============================================================
-
-// ===== CANVAS =====
-const canvas = document.getElementById('pqCanvas');
-const ctx = canvas.getContext('2d');
-let running = true;
-let time = 0;
-let pqValue = 0;
-let whirlMode = 'CORE';
-let respoState = 'SYNTHESIS';
-let routing = 'palaise';
-
-function resizeCanvas() {
-  const rect = canvas.parentElement.getBoundingClientRect();
-  canvas.width = rect.width || 700;
-  canvas.height = rect.height || (rect.width * 9/16) || 390;
-}
-window.addEventListener('resize', resizeCanvas);
-
-// ===== ROUTING =====
-const ROUTES = {
-  palaise: { name: 'PALAISE_RESPO', range: '0-99', color: '#00ff88', icon: '📊' },
-  arg: { name: 'RESPO_ARG_SCAN', range: '100-199', color: '#ffaa00', icon: '🔍' },
-  whirl: { name: 'RESPO_WHIRL', range: '200-299', color: '#ff66ff', icon: '🌀' },
-  hub: { name: 'NC_HUB_ALL', range: '≥300', color: '#00ccff', icon: '🌐' }
-};
-
-function getRoute(value) {
-  if (value < 100) return 'palaise';
-  if (value < 200) return 'arg';
-  if (value < 300) return 'whirl';
-  return 'hub';
-}
-
-// ===== WHIRL MODES =====
-const WHIRL_MODES = ['CORE', 'SYS', 'PQ', 'HYPER'];
-let whirlIndex = 0;
-
-function nextWhirl() {
-  whirlIndex = (whirlIndex + 1) % WHIRL_MODES.length;
-  whirlMode = WHIRL_MODES[whirlIndex];
-  document.getElementById('whirlStatus').textContent = whirlMode;
-  console.log(`🌀 WHIRL: ${whirlMode}`);
-}
-
-// ===== RESPO STATES =====
-const RESPO_STATES = ['SYNTHESIS', 'LINEAR', 'ORTHOGONAL', 'INFINITY', 'AURA'];
-let respoIndex = 0;
-
-function nextRespo() {
-  respoState = RESPO_STATES[respoIndex % RESPO_STATES.length];
-  respoIndex++;
-  console.log(`🔥 RESPO: ${respoState}`);
-}
-
-// ===== UPDATE =====
-function updatePQ() {
-  // PQ-Wert bewegt sich durch alle Bereiche
-  pqValue = (pqValue + 0.7) % 360;
-
-  // Routing bestimmen
-  const newRoute = getRoute(pqValue);
-  if (newRoute !== routing) {
-    routing = newRoute;
-    document.querySelectorAll('.routing-card').forEach(card => {
-      const range = card.dataset.range;
-      card.style.borderColor = range === routing ? ROUTES[routing].color + '44' : '';
-      card.style.background = range === routing ? 'rgba(255,170,0,0.03)' : '';
-    });
-  }
-
-  // DOM
-  document.getElementById('pqStatus').textContent = `${Math.round(pqValue)} · ${ROUTES[routing].name}`;
-  document.getElementById('pqStatus').style.color = ROUTES[routing].color;
-}
-
-// ===== RENDER =====
-function render() {
-  const w = canvas.width, h = canvas.height;
-  const cx = w/2, cy = h/2;
-  const maxDim = Math.min(w, h);
-
-  ctx.clearRect(0, 0, w, h);
-
-  // Hintergrund
-  const grad = ctx.createRadialGradient(cx, cy, 10, cx, cy, maxDim * 0.6);
-  grad.addColorStop(0, '#0a0a1a');
-  grad.addColorStop(0.5, '#050510');
-  grad.addColorStop(1, '#000000');
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, w, h);
-
-  // Routing-Ringe
-  const routeColors = {
-    palaise: '#00ff88',
-    arg: '#ffaa00',
-    whirl: '#ff66ff',
-    hub: '#00ccff'
-  };
-
-  const routeRanges = {
-    palaise: 0.1,
-    arg: 0.3,
-    whirl: 0.5,
-    hub: 0.7
-  };
-
-  for (const [key, range] of Object.entries(routeRanges)) {
-    const r = maxDim * (0.1 + range * 0.15);
-    const color = routeColors[key];
-    const isActive = routing === key;
-    ctx.shadowBlur = isActive ? 20 : 0;
-    ctx.shadowColor = isActive ? color + '44' : 'transparent';
-    ctx.strokeStyle = isActive ? color + '44' : color + '11';
-    ctx.lineWidth = isActive ? 2 : 0.5;
-    ctx.beginPath();
-    ctx.arc(cx, cy, r, 0, Math.PI * 2);
-    ctx.stroke();
-  }
-
-  // PQ-Punkt
-  const angle = pqValue / 360 * Math.PI * 2;
-  const dist = maxDim * (0.1 + (pqValue / 360) * 0.25);
-  const x = cx + Math.cos(angle) * dist;
-  const y = cy + Math.sin(angle) * dist;
-
-  const routeColor = routeColors[routing] || '#ffaa00';
-  ctx.shadowColor = routeColor + '66';
-  ctx.shadowBlur = 30;
-  ctx.fillStyle = routeColor + '88';
-  ctx.beginPath();
-  ctx.arc(x, y, 5 + (pqValue / 360) * 4, 0, Math.PI * 2);
-  ctx.fill();
-
-  // WHIRL-Modus
-  ctx.shadowBlur = 0;
-  ctx.fillStyle = '#ff66ff44';
-  ctx.font = `${maxDim * 0.02}px monospace`;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'bottom';
-  ctx.fillText(`🌀 WHIRL · ${whirlMode}`, cx, h - 16);
-
-  // Routing-Info
-  ctx.fillStyle = '#445555';
-  ctx.font = `${maxDim * 0.015}px monospace`;
-  ctx.textBaseline = 'top';
-  ctx.fillText(`📍 ${ROUTES[routing].name} · ${Math.round(pqValue)}`, cx, 16);
-
-  // RESPO
-  ctx.fillStyle = '#ff66ff44';
-  ctx.font = `${maxDim * 0.015}px monospace`;
-  ctx.textBaseline = 'top';
-  ctx.textAlign = 'right';
-  ctx.fillText(`🔥 ${respoState}`, w - 16, 16);
-
-  // 243
-  ctx.fillStyle = '#ffaa0044';
-  ctx.font = `${maxDim * 0.015}px monospace`;
-  ctx.textAlign = 'left';
-  ctx.textBaseline = 'bottom';
-  ctx.fillText('🌀 243 · PQ-ROOT', 16, h - 16);
-
-  // Zeit
-  const seconds = Math.floor(time / 1000);
-  const minutes = Math.floor(seconds / 60);
-  document.getElementById('timeStatus').textContent =
-    `${String(minutes).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
-}
-
-// ===== UPDATE =====
-function update() {
-  if (!running) return;
-  time += 16;
-  updatePQ();
-  render();
-  requestAnimationFrame(update);
-}
-
-// ===== TOGGLES =====
-function triggerPQ() {
-  document.getElementById('btnPQ').classList.toggle('active');
-  console.log('🌀 PQ getriggert');
-}
-
-function triggerWhirl() {
-  nextWhirl();
-  document.getElementById('btnWhirl').classList.toggle('active');
-}
-
-// ===== PROOF =====
-function showProof() {
-  const proof = document.createElement('div');
-  proof.style.cssText = `
-    position: fixed; inset: 0; background: rgba(0,0,0,0.85);
-    display: flex; justify-content: center; align-items: center;
-    z-index: 9999; backdrop-filter: blur(20px);
-    font-family: 'Consolas', monospace;
-  `;
-  proof.innerHTML = `
-    <div style="text-align:center; padding:40px; border:1px solid rgba(255,170,0,0.1); border-radius:20px; background:rgba(10,10,20,0.6); max-width:450px;">
-      <div style="font-size:48px; color:#ffaa00;">🌀</div>
-      <div style="color:#ffaa00; font-size:20px; margin:12px 0; letter-spacing:4px;">243 · PQ‑ROOT</div>
-      <div style="color:#88ddbb; font-size:13px; line-height:1.8;">
-        📍 ROUTE: ${ROUTES[routing].name} (${Math.round(pqValue)})<br>
-        🌀 WHIRL: ${whirlMode}<br>
-        🔥 RESPO: ${respoState}<br>
-        📊 PALAISE: 0-99 · 🔍 ARG: 100-199<br>
-        🌀 WHIRL: 200-299 · 🌐 HUB: ≥300
-      </div>
-      <button onclick="this.parentElement.parentElement.remove()" style="
-        margin-top:14px; background:rgba(20,35,35,0.2); color:#668888;
-        border:1px solid rgba(255,255,255,0.02); padding:6px 20px;
-        border-radius:18px; cursor:pointer; font-family:inherit; font-size:9px;
-      ">⏎ SCHLIESSEN</button>
+<div id="dashboard">
+    <div class="card">
+        <h3>🔺 Dreiecke → Triolets (243)</h3>
+        <div class="output" id="output-243">⏳ Warte auf Verarbeitung...</div>
+        <button class="two43" id="btn-243">▶ 243 verarbeiten</button>
     </div>
-  `;
-  document.body.appendChild(proof);
+
+    <div class="card">
+        <h3>📊 Sortierung (iki1uc)</h3>
+        <div class="output" id="output-iki">⏳ Warte auf Sortierung...</div>
+        <button class="iki" id="btn-iki">▶ iki1uc sortieren</button>
+    </div>
+
+    <div class="card" style="grid-column:1/-1;">
+        <h3>📖 Vollständiges Narrativ</h3>
+        <div class="output" id="output-narrativ">⏳ Warte auf Narrativ...</div>
+        <button class="primary" id="btn-narrativ">▶ Narrativ erzeugen</button>
+    </div>
+
+    <div id="log">
+        <div class="entry"><span class="time">[INIT]</span> <span class="msg ok">🔺 243 + iki1uc Narrativ-Maschine geladen</span></div>
+    </div>
+</div>
+
+<script type="module">
+import { NarrativMaschine } from './core/243-iki1uc-verbindung.js';
+
+// --- Kandidaten ---
+const kandidaten = [
+  'a', 'b', 'c', 'y', 'x', 'z', 'q', 'd', 'f',
+  'OS', 'BOOT', 'iki1uc', '243',
+  'DOOR', 'DOO', 'RESPO', 'NC.engine',
+  'SCORE', 'WETTE', 'SLIDE', 'AXIOM'
+];
+
+// --- Maschine ---
+const maschine = new NarrativMaschine();
+maschine.addKandidaten(kandidaten);
+
+// --- Log ---
+function log(msg, type = 'ok') {
+    const logDiv = document.getElementById('log');
+    const entry = document.createElement('div');
+    entry.className = 'entry';
+    const time = new Date().toLocaleTimeString();
+    const cls = type === 'two43' ? 'two43' : type === 'iki' ? 'iki' : 'ok';
+    entry.innerHTML = `<span class="time">[${time}]</span> <span class="msg ${cls}">${msg}</span>`;
+    logDiv.appendChild(entry);
+    logDiv.scrollTop = logDiv.scrollHeight;
+    while (logDiv.children.length > 30) logDiv.removeChild(logDiv.firstChild);
 }
 
-// ===== RESET =====
-function resetAll() {
-  pqValue = 0;
-  routing = 'palaise';
-  whirlMode = 'CORE';
-  whirlIndex = 0;
-  respoState = 'SYNTHESIS';
-  respoIndex = 0;
-  document.getElementById('btnStart').classList.remove('active');
-  document.getElementById('pqStatus').textContent = 'reset';
-  document.getElementById('whirlStatus').textContent = 'CORE';
-  document.querySelectorAll('.routing-card').forEach(card => {
-    card.style.borderColor = '';
-    card.style.background = '';
-  });
+// --- Ausgabe ---
+function zeige243() {
+    const out = document.getElementById('output-243');
+    const narrative = maschine.engine243.zeigeNarrative();
+    if (narrative.length === 0) {
+        out.innerHTML = '⏳ Keine Triolets erzeugt.';
+        return;
+    }
+    let text = `📐 ${narrative.length} Triolets erzeugt\n\n`;
+    for (let i = 0; i < narrative.length; i++) {
+        const t = narrative[i];
+        if (t.status === 'triolet') {
+            text += `${i+1}. ${t.ecke1} ↔ ${t.ecke2} ↔ ${t.ecke3}\n`;
+            text += `   Gewicht: ${t.gewicht}\n`;
+        }
+    }
+    out.innerHTML = text;
 }
 
-// ===== CONTROLS =====
-document.getElementById('btnStart').addEventListener('click', function() {
-  running = !running;
-  this.classList.toggle('active');
-  this.textContent = running ? '▶ START' : '⏸ PAUSE';
-  document.getElementById('pqStatus').textContent = running ? 'aktiv' : 'pausiert';
-  if (running) update();
+function zeigeIki() {
+    const out = document.getElementById('output-iki');
+    const sortierung = maschine.master.sortierung;
+    if (Object.keys(sortierung).length === 0) {
+        out.innerHTML = '⏳ Keine Sortierung vorhanden.';
+        return;
+    }
+    let text = `📊 Sortierung:\n`;
+    text += `  🔴 Schwer: ${sortierung.schwer?.length || 0}\n`;
+    text += `  🟡 Mittel: ${sortierung.mittel?.length || 0}\n`;
+    text += `  🟢 Leicht: ${sortierung.leicht?.length || 0}\n\n`;
+    
+    for (const [kategorie, items] of Object.entries(sortierung)) {
+        if (items && items.length > 0) {
+            text += `\n${kategorie}:\n`;
+            for (const item of items) {
+                text += `  - ${item.ecke1} ↔ ${item.ecke2} ↔ ${item.ecke3}\n`;
+            }
+        }
+    }
+    out.innerHTML = text;
+}
+
+function zeigeNarrativ() {
+    const out = document.getElementById('output-narrativ');
+    const text = maschine.textNarrativ();
+    out.innerHTML = text;
+    log('📖 Narrativ erzeugt', 'ok');
+}
+
+// --- Buttons ---
+document.getElementById('btn-243').addEventListener('click', () => {
+    const narrativ = maschine.verarbeiteAlle();
+    log(`🔺 243: ${narrativ.triolets.length} Triolets erzeugt`, 'two43');
+    zeige243();
 });
 
-document.getElementById('btnPQ').addEventListener('click', triggerPQ);
-document.getElementById('btnWhirl').addEventListener('click', triggerWhirl);
-document.getElementById('btnRespo').addEventListener('click', nextRespo);
-document.getElementById('btnProof').addEventListener('click', showProof);
-document.getElementById('btnReset').addEventListener('click', resetAll);
-
-// ===== TASTATUR =====
-document.addEventListener('keydown', (e) => {
-  if (e.key === ' ') { e.preventDefault(); document.getElementById('btnStart').click(); }
-  if (e.key === 'p' || e.key === 'P') document.getElementById('btnPQ').click();
-  if (e.key === 'w' || e.key === 'W') document.getElementById('btnWhirl').click();
-  if (e.key === 'r' || e.key === 'R') document.getElementById('btnRespo').click();
-  if (e.key === 'x' || e.key === 'X') document.getElementById('btnProof').click();
-  if (e.key === 'z' || e.key === 'Z') document.getElementById('btnReset').click();
+document.getElementById('btn-iki').addEventListener('click', () => {
+    const n = maschine.zeigeNarrativ();
+    if (n.status === 'kein_narrativ') {
+        log('⚠️ Bitte zuerst 243 verarbeiten', 'ok');
+        return;
+    }
+    maschine.master.sortiereNarrative(n.triolets);
+    log('📊 iki1uc: Narrative sortiert', 'iki');
+    zeigeIki();
 });
 
-// ===== INIT =====
-resizeCanvas();
-setTimeout(resizeCanvas, 200);
-update();
+document.getElementById('btn-narrativ').addEventListener('click', () => {
+    const n = maschine.zeigeNarrativ();
+    if (n.status === 'kein_narrativ') {
+        log('⚠️ Bitte zuerst 243 verarbeiten', 'ok');
+        return;
+    }
+    zeigeNarrativ();
+});
 
-console.log('🌀 243 · PQ‑ROOT · WHIRL · RESPO v2.43');
-console.log('📊 PALAISE: 0-99 · 🔍 ARG: 100-199 · 🌀 WHIRL: 200-299 · 🌐 HUB: ≥300');
-console.log('⌨️  Leertaste=Start  p=PQ  w=WHIRL  r=RESPO  x=PROOF  z=Reset');
+// --- Auto ---
+log('🔺 ' + kandidaten.length + ' Kandidaten geladen', 'ok');
+log('📐 ' + Math.floor(kandidaten.length / 3) + ' Dreiecke möglich', 'ok');
+
+// Auto-Narrativ nach 1 Sekunde
+setTimeout(() => {
+    document.getElementById('btn-243').click();
+    setTimeout(() => document.getElementById('btn-iki').click(), 500);
+    setTimeout(() => document.getElementById('btn-narrativ').click(), 1000);
+}, 500);
 </script>
-
 </body>
 </html>
